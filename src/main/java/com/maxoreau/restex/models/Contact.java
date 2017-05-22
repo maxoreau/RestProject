@@ -1,5 +1,8 @@
 package com.maxoreau.restex.models;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name ="Contact")
 public class Contact {
 	private String nom;
 	private String prenom;
@@ -15,6 +18,13 @@ public class Contact {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.numero = numero;
+	}
+
+	public Contact(String prenom, String nom, String numero, int contactId) {
+		this.prenom = prenom;
+		this.nom = nom;
+		this.numero = numero;
+		this.contactId = contactId;
 	}
 	
 	public Contact(Contact c) {

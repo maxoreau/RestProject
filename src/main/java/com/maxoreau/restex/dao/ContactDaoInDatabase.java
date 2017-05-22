@@ -58,7 +58,7 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 			pstmt.setString(1, name);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				contacts.add(new Contact(rs.getString("prenom"), rs.getString("nom"), rs.getString("numero")));
+				contacts.add(new Contact(rs.getString("prenom"), rs.getString("nom"), rs.getString("numero"), rs.getInt("contact_id")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,10 +79,11 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 		Connection connection = ConnectionDatabase.getConnectionDatabase().getConnection();
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = connection.prepareStatement("INSERT INTO contacts (prenom, nom, numero) VALUES (?, ?, ?);");
+			pstmt = connection.prepareStatement("UPDATE contacts SET prenom = ?, nom = ?, numero = ? WHERE contact_id = ?;");
 			pstmt.setString(1, contact.getPrenom());
 			pstmt.setString(2, contact.getNom());
 			pstmt.setString(3, contact.getNumero());
+			pstmt.setInt(4, contact.getContactId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +132,7 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 			stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(requete);
 			while (rs.next()) {
-				contacts.add(new Contact(rs.getString("prenom"), rs.getString("nom"), rs.getString("numero")));
+				contacts.add(new Contact(rs.getString("prenom"), rs.getString("nom"), rs.getString("numero"), rs.getInt("contact_id")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -1,5 +1,7 @@
 package com.maxoreau.restex.rest;
 
+import java.util.List;
+
 //package com.mkyong.rest;
 
 import javax.ws.rs.GET;
@@ -42,7 +44,7 @@ public class RestMax {
 	
 	
 	@GET
-	public Response getall() {
+	public Response getAll() {
 		String output = "Bonjour, voici la liste des contacts : ";
 		daoGenerique<Contact> dao = new ContactDaoInDatabase();
 		
@@ -68,7 +70,19 @@ public class RestMax {
 		}
 		
 		return Response.status(200).entity(output).build();
+	}
+	
+	@GET
+	@Path("/all")
+	public List<Contact> getAllJson() {
+		String output = "Bonjour, voici la liste des contacts : ";
+		daoGenerique<Contact> dao = new ContactDaoInDatabase();
 		
+		for (Contact contact : dao.getAll()) {
+			output += contact.toString();
+		}
+			
+		return dao.getAll();
 	}
 
 	
