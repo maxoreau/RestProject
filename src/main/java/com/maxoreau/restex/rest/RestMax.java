@@ -1,14 +1,25 @@
 package com.maxoreau.restex.rest;
 
-import java.util.List;
+import java.io.IOException;
 
-//package com.mkyong.rest;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+
+import org.codehaus.jackson.JsonEncoding;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.annotate.JsonClass;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import com.maxoreau.restex.dao.ContactDaoInDatabase;
 import com.maxoreau.restex.dao.daoGenerique;
@@ -34,25 +45,24 @@ public class RestMax {
 //
 //	}
 	
-	@GET
-	@Path("nom-{nom}-prenom-{prenom}-numero-{numero}")
-	public String createContact(@PathParam("nom") String nom, @PathParam("prenom") String prenom, @PathParam("numero") String numero) {
+	@POST
+	@Consumes(value ={"application/x-www-form-urlencoded", "application/json"})
+	public String createContact(@FormParam("contact") String contact) {
+		ObjectMapper mapper = new ObjectMapper();
 		daoGenerique<Contact> dao = new ContactDaoInDatabase();
-		dao.create(new Contact(prenom, nom, numero));
-		return "le contact a bien ete ajoute";
-	}
-	
-	
-	@GET
-	public Response getAll() {
-		String output = "Bonjour, voici la liste des contacts : ";
-		daoGenerique<Contact> dao = new ContactDaoInDatabase();
-		
-		for (Contact contact : dao.getAll()) {
-			output += contact.toString();
+		try {
+			Contact c = mapper.readValue(contact, Contact.class);
+			dao.create(c);
+			System.out.println("contact créé");
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-			
-		return Response.status(200).entity(output).build();
+		
+		return "le contact a bien ete ajoute";
 	}
 	
 	@GET
@@ -72,18 +82,42 @@ public class RestMax {
 		return Response.status(200).entity(output).build();
 	}
 	
+	
 	@GET
-	@Path("/all")
-	public List<Contact> getAllJson() {
+	public Response getAll() {
 		String output = "Bonjour, voici la liste des contacts : ";
 		daoGenerique<Contact> dao = new ContactDaoInDatabase();
-		
+		System.out.println("fonction getAll() appelée");
 		for (Contact contact : dao.getAll()) {
 			output += contact.toString();
 		}
 			
-		return dao.getAll();
+		return Response.status(200).entity(output).build();
 	}
+	
+	@GET
+	@Path("/json")
+	@Produces("application/json")
+	public String getAllJson() {
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonOutput = null;
+		daoGenerique<Contact> dao = new ContactDaoInDatabase();
+		System.out.println("fonction getAllJson() appelée");
+		
+		try {
+			jsonOutput = mapper.writeValueAsString(dao.getAll());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			
+		return jsonOutput;
+	}
+	
+//	@PUT
 
 	
 	

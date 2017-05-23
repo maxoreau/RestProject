@@ -3,22 +3,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Titre</title>
-<script src=""></script>
-<link rel="stylesheet" type="text/css" href="../js/app.js">
+<script type="text/javascript" src="../js/app.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 
-<div id="head" class="header">
-header
-</div>
+	<div id="head" class="header">
+		<h1>header</h1>
+	</div>
 
-<div id="wrap" class="wraper">
-wraper
-</div>
+	<div id="wrap" class="wraper">
+		<h1>wraper</h1>
+		<table id="affichageContacts" class="affichage">
+			<tr>
+				<th>Prenom</th>
+				<th>Nom</th>
+				<th>Numero</th>
+			</tr>
+		</table>
+		<input type="submit" value="afficher les contacts" id="getContacts" onclick="getContacts()" />
+	</div>
 
-<div id="foot" class="footer">
-footer
-</div>
+	<div id="foot" class="footer">
+		<h1>footer</h1>
+		<label class="formItem" for="nom">prenom</label> <input type="text"
+			class="formItem" id="inputPrenom" /> <label class="formItem"
+			for="nom">nom</label> <input type="text" class="formItem"
+			id="inputNom" /> <label class="formItem" for="nom">numero</label> <input
+			type="text" class="formItem" id="inputNumero" /> <input
+			type="submit" class="formItem" value="créer contact" id="send" onclick="createContact()" />
+	</div>
 
 </body>
 </html>
