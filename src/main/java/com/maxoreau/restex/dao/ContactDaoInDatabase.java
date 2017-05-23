@@ -47,15 +47,17 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 
 		}
 	}
-	
+
 	@Override
-	public List<Contact> readByName(String name) {
+	public List<Contact> readByName(String string) {
 		Connection connection = ConnectionDatabase.getConnectionDatabase().getConnection();
 		PreparedStatement pstmt = null;
 		List<Contact> contacts = new ArrayList<Contact>();
 		try {
-			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE nom = ?;");
-			pstmt.setString(1, name);
+			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE (nom = ? or prenom = ? or numero = ?);");
+			pstmt.setString(1, string);
+			pstmt.setString(2, string);
+			pstmt.setString(3, string);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				contacts.add(new Contact( rs.getInt("contact_id"), rs.getString("prenom"), rs.getString("nom"), rs.getString("numero")));
@@ -100,13 +102,13 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 	}
 
 	@Override
-	public void delete(String numero) {
+	public void delete(int	id) {
 	
 			Connection connection = ConnectionDatabase.getConnectionDatabase().getConnection();
 			PreparedStatement pstmt = null;
 			try {
-				pstmt = connection.prepareStatement("DELETE FROM contacts WHERE numero = ?;");
-				pstmt.setString(1, numero);
+				pstmt = connection.prepareStatement("DELETE FROM contacts WHERE contact_id = ?;");
+				pstmt.setInt(1, id);
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -10,7 +10,7 @@ public interface daoGenerique<T> {
 	
 	public void update(T t);
 	
-	public void delete(String s);
+	public void delete(int i);
 	
 	public List<T> getAll();
 	
