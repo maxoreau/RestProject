@@ -58,7 +58,7 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 			pstmt.setString(1, name);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				contacts.add(new Contact(rs.getString("prenom"), rs.getString("nom"), rs.getString("numero"), rs.getInt("contact_id")));
+				contacts.add(new Contact( rs.getInt("contact_id"), rs.getString("prenom"), rs.getString("nom"), rs.getString("numero")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 			stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(requete);
 			while (rs.next()) {
-				contacts.add(new Contact(rs.getString("prenom"), rs.getString("nom"), rs.getString("numero"), rs.getInt("contact_id")));
+				contacts.add(new Contact(rs.getInt("contact_id"), rs.getString("prenom"), rs.getString("nom"), rs.getString("numero")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
