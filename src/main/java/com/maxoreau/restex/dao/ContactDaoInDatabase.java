@@ -100,13 +100,13 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 	}
 
 	@Override
-	public void delete(String numero) {
+	public void delete(int	id) {
 	
 			Connection connection = ConnectionDatabase.getConnectionDatabase().getConnection();
 			PreparedStatement pstmt = null;
 			try {
-				pstmt = connection.prepareStatement("DELETE FROM contacts WHERE numero = ?;");
-				pstmt.setString(1, numero);
+				pstmt = connection.prepareStatement("DELETE FROM contacts WHERE contact_id = ?;");
+				pstmt.setInt(1, id);
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -9,29 +9,28 @@
 <body>
 
 	<div id="head" class="header">
-		<h1>header</h1>
+		<h1>CREATE</h1>
+		<label class="formItem" for="nom">prenom</label> 
+		<input type="text" class="formItem" id="inputPrenom" /> 
+		<label class="formItem" for="nom">nom</label> 
+		<input type="text" class="formItem" id="inputNom" /> 
+		<label class="formItem" for="nom">numero</label> 
+		<input type="text" class="formItem" id="inputNumero" /> 
+		<input type="submit" class="formItem" value="créer contact" id="send" onclick="createContact()" />
 	</div>
 
 	<div id="wrap" class="wraper">
-		<h1>wraper</h1>
-		<table id="affichageContacts" class="affichage">
-			<tr>
-				<th>Prenom</th>
-				<th>Nom</th>
-				<th>Numero</th>
-			</tr>
-		</table>
+		<h1>READ</h1>
+		<div id="affichageContacts" class="affichage">
+		</div>
 		<input type="submit" value="afficher les contacts" id="getContacts" onclick="getContacts()" />
 	</div>
 
 	<div id="foot" class="footer">
-		<h1>footer</h1>
-		<label class="formItem" for="nom">prenom</label> <input type="text"
-			class="formItem" id="inputPrenom" /> <label class="formItem"
-			for="nom">nom</label> <input type="text" class="formItem"
-			id="inputNom" /> <label class="formItem" for="nom">numero</label> <input
-			type="text" class="formItem" id="inputNumero" /> <input
-			type="submit" class="formItem" value="créer contact" id="send" onclick="createContact()" />
+		<h1>DELETE</h1>
+		<select id="listeContacts" class="affichage">
+		</select>
+		<input type="submit" value="Supprimer" id="getContacts" onclick="delContacts()" />
 	</div>
 
 </body>
