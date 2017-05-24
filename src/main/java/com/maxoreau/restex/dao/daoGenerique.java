@@ -8,6 +8,8 @@ public interface daoGenerique<T> {
 	
 	public List<T> readByName(String name);
 	
+	public T readById(int i);
+	
 	public void update(T t);
 	
 	public void delete(int i);

@@ -54,10 +54,10 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 		PreparedStatement pstmt = null;
 		List<Contact> contacts = new ArrayList<Contact>();
 		try {
-			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE (nom = ? or prenom = ? or numero = ?);");
-			pstmt.setString(1, string);
-			pstmt.setString(2, string);
-			pstmt.setString(3, string);
+			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE ((nom LIKE ?) or (prenom LIKE ?) or (numero LIKE ?));");
+			pstmt.setString(1, ("%" + string + "%"));
+			pstmt.setString(2, ("%" + string + "%"));
+			pstmt.setString(3, ("%" + string + "%"));
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				contacts.add(new Contact( rs.getInt("contact_id"), rs.getString("prenom"), rs.getString("nom"), rs.getString("numero")));
@@ -74,6 +74,35 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 			}
 		}
 		return contacts;
+	}
+
+	@Override
+	public Contact readById(int id) {
+		Connection connection = ConnectionDatabase.getConnectionDatabase().getConnection();
+		PreparedStatement pstmt = null;
+		Contact contact = new Contact();
+		try {
+			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE contact_id = ?;");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				contact.setContactId(rs.getInt("contact_id"));
+				contact.setPrenom(rs.getString("prenom"));
+				contact.setNom(rs.getString("nom"));
+				contact.setNumero(rs.getString("numero"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return contact;
 	}
 	
 	@Override

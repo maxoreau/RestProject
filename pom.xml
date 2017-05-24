@@ -20,10 +20,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-
-
-
-
 		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -34,6 +30,12 @@
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.sun.jersey.contribs/jersey-multipart -->
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-multipart</artifactId>
 			<version>1.9</version>
 		</dependency>
 
@@ -49,11 +51,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.38</version>
 		</dependency>
-
-
-
-
-
 	</dependencies>
 	<build>
 		<finalName>restex</finalName>

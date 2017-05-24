@@ -36,11 +36,25 @@
     </div>
 
     <div id="foot" class="footer">
-        <h2>Delete</h2>
-        <select id="listeContacts" class="affichage">
-		</select>
-        <button type="button" id="getContacts" onclick="delContacts()">Supprimer</button>
+        <div id="modifyDelete">
+            <h2>Modify or Delete</h2>
+            <select id="listeContacts" class="affichage" onselect=""></select>
+            <p>
+            <label class="formItem" for="nom">prenom</label>
+            <input type="text" class="formItem" id="modifyPrenom" />
+            </p>
+            <p>
+            <label class="formItem" for="nom">nom</label>
+            <input type="text" class="formItem" id="modifyNom" />
+            </p>
+            <p>
+            <label class="formItem" for="nom">numero</label>
+            <input type="text" class="formItem" id="modifyNumero" />
+            </p>
+            <button type="button" id="getContacts" onclick="delContacts()">Supprimer</button>
+        </div>
     </div>
+
 
 </body>
 

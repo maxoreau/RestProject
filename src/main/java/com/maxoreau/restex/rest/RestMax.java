@@ -36,8 +36,15 @@ public class RestMax {
 	@GET
 	@Path("{string}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Contact> SearchByString(@PathParam("string") String string) {
+	public List<Contact> searchByString(@PathParam("string") String string) {
 		return dao.readByName(string);
+	}
+	
+	@GET
+	@Path("id-{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Contact searchById(@PathParam("id") int id) {
+		return dao.readById(id);
 	}
 		
 	@GET
@@ -58,11 +65,6 @@ public class RestMax {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteContact(int contactId) {
 		dao.delete(contactId);
-	}
-	
-
-	
-	
-
+	}	
 	
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Titre</title>
+    <link rel="stylesheet" type="text/css" src="./style.css">
+</head>
+
+<body>
+
+    <div id="head" class="header">
+        <select id="styleGeneral">
+            <option value="white">clair</option>
+            <option value="darkgray">dark</option>
+            <option value="lightblue">bleu ciel</option>     
+        </select>
+    </div>
+
+    <div id="wrap" class="wraper">
+        <div id="contactCreation">
+            <h2>Create contact</h2>
+            <label class="formItem" for="nom">prenom</label>
+            <input type="text" class="formItem" id="inputPrenom" />
+            <label class="formItem" for="nom">nom</label>
+            <input type="text" class="formItem" id="inputNom" />
+            <label class="formItem" for="nom">numero</label>
+            <input type="text" class="formItem" id="inputNumero" />
+            <button type="button" class="formItem" id="sendContact" onclick="createContact()">Valider</button>
+        </div>
+        <div id="readAll">
+            <h2>Show all</h2>
+            <div id="affichageContacts" class="affichage"></div>
+            <input type="submit" value="afficher les contacts" id="getContacts" onclick="getContacts()" />
+        </div>
+        <div id="search">
+            <h2>Search</h2>
+            <div id="showSearch" class="affichage"></div>
+            <input type="text" class="formItem" id="searchBox" />
+            <button type="button" id="searchButton" onclick="searchEngine()">Search</button>
+        </div>
+        <div id="modifyDelete">
+            <h2>Modify or Delete</h2>
+            <select id="listeContacts" class="affichage"></select>
+            <p>
+                <label class="formItem" for="nom">prenom</label>
+                <input type="text" class="formItem" id="modifyPrenom" />
+            </p>
+            <p>
+                <label class="formItem" for="nom">nom</label>
+                <input type="text" class="formItem" id="modifyNom" />
+            </p>
+            <p>
+                <label class="formItem" for="nom">numero</label>
+                <input type="text" class="formItem" id="modifyNumero" />
+            </p>
+            <button type="button" id="getContacts" onclick="delContacts()">Supprimer</button>
+        </div>
+    </div>
+
+    <div id="foot" class="footer">
+    </div>
+
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/appjquery.js"></script>
+</body>
+
+</html>
