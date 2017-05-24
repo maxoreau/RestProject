@@ -8,9 +8,9 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 
 import com.maxoreau.restex.dao.ContactDaoInDatabase;
@@ -29,27 +29,13 @@ public class RestMax {
 	}
 	
 	@GET
-	@Path("{name}")
+	@Path("{string}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Contact> getByNom(String nom) {
+	public List<Contact> SearchByString(@PathParam("string") String string) {
 		daoGenerique<Contact> dao = new ContactDaoInDatabase();
-		return dao.readByName(nom);
+		return dao.readByName(string);
 	}
-	
-	
-//	@GET
-//	@Path("/string")
-//	public Response getAll() {
-//		String output = "Bonjour, voici la liste des contacts : ";
-//		daoGenerique<Contact> dao = new ContactDaoInDatabase();
-//		System.out.println("fonction getAll() appelée");
-//		for (Contact contact : dao.getAll()) {
-//			output += contact.toString();
-//		}
-//			
-//		return Response.status(200).entity(output).build();
-//	}
-	
+		
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Contact> getAllJson() {

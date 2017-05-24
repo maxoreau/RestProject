@@ -44,6 +44,7 @@ function envoieContact(contact) {
 
 
 function getContacts() { //fonction appelée pour récupérer les contacts et les afficher dans un tableau
+    var divId = "#affichageContacts";
     var xhr = new XMLHttpRequest();
     var url = ("http://localhost:8080/restex/rest/contacts");
 
@@ -52,7 +53,7 @@ function getContacts() { //fonction appelée pour récupérer les contacts et le
             // elle n'est pas globale
             var contacts = JSON.parse(xhr.responseText);
             remplirListeDeroulanteContacts(contacts); // appel à la fonction qui va afficher les contacts dans une liste à déroulante
-            remplirListeAPucesContacts(contacts); // appel à la fonction qui va afficher les contacts dans une liste à puces
+            remplirListeAPucesContacts(contacts, divId); // appel à la fonction qui va afficher les contacts dans une liste à puces
             console.log(xhr.getResponseHeader('Content-type'));
         }
     };
@@ -63,30 +64,31 @@ function getContacts() { //fonction appelée pour récupérer les contacts et le
 
 function searchEngine() {
     var string = document.querySelector("#searchBox").value;
-    getContact(string);
+    searchByString(string);
 }
 
-function getContact(nom) { //fonction appelée pour récupérer les contacts et les afficher dans un tableau
+function searchByString(string) { //fonction appelée pour récupérer les contacts et les afficher dans un tableau
+    var divId = "#showSearch";
     var xhr = new XMLHttpRequest();
-    var url = ("http://localhost:8080/restex/rest/contacts/" + nom);
+    var url = ("http://localhost:8080/restex/rest/contacts/" + string);
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // La constante DONE appartient à l'objet XMLHttpRequest,
             // elle n'est pas globale
             var contacts = JSON.parse(xhr.responseText);
             remplirListeDeroulanteContacts(contacts); // appel à la fonction qui va afficher les contacts dans une liste à déroulante
-            remplirListeAPucesContacts(contacts); // appel à la fonction qui va afficher les contacts dans une liste à puces
+            remplirListeAPucesContacts(contacts, divId); // appel à la fonction qui va afficher les contacts dans une liste à puces
             console.log(xhr.getResponseHeader('Content-type'));
         }
     };
     xhr.open('GET', url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(nom);
+    xhr.send();
 }
 
 
-function remplirListeAPucesContacts(contacts) { // affichage des contacts dans une liste à puces
-    var display = document.querySelector("#affichageContacts");
+function remplirListeAPucesContacts(contacts, divId) { // affichage des contacts dans une liste à puces
+    var display = document.querySelector(divId);
     display.innerHTML = "<p>Contacts</p><ul>"; // initialise la liste à puces
 
     contacts.forEach(function(contact) { // itérer sur la collection pour remplir la liste à puces
