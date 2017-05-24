@@ -10,11 +10,13 @@ function Contact(contactId, prenom, nom, numero) {
 
 var contactsListeDeroulante;
 
-$('#styleGeneral').on('change', function () {
+$("body").css("background-color", "darkgray");
+
+$('#styleGeneral').on('change', function() {
     $("body").css("background-color", this.value);
 })
 
-$('#searchBox').on('keypress', function () {
+$('#searchBox').on('keypress', function() {
     searchByString(this.val());
 })
 
@@ -31,8 +33,8 @@ function createContact() { // méthode appelée lors de la création d'un contac
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: false,
-            success: function (msg) {
-                getContacts();//prendre en charge la réponse si besoin
+            success: function(msg) {
+                getContacts(); //prendre en charge la réponse si besoin
             }
         });
     }
@@ -46,7 +48,7 @@ function getContacts() { //fonction appelée pour récupérer les contacts et le
     var xhr = new XMLHttpRequest();
     var url = ("http://localhost:8080/restex/rest/contacts");
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // La constante DONE appartient à l'objet XMLHttpRequest,
             // elle n'est pas globale
             var contacts = JSON.parse(xhr.responseText);
@@ -68,7 +70,7 @@ function searchByString(string) { //fonction appelée pour récupérer les conta
     var xhr = new XMLHttpRequest();
     var url = ("http://localhost:8080/restex/rest/contacts/" + string);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // La constante DONE appartient à l'objet XMLHttpRequest,
             // elle n'est pas globale
             var contacts = JSON.parse(xhr.responseText);
@@ -86,7 +88,7 @@ function remplirListeAPucesContacts(contacts, divId) { // affichage des contacts
     var display = document.querySelector(divId);
     display.innerHTML = "<p>Contacts</p><ul>"; // initialise la liste à puces
 
-    contacts.forEach(function (contact) { // itérer sur la collection pour remplir la liste à puces
+    contacts.forEach(function(contact) { // itérer sur la collection pour remplir la liste à puces
         display.innerHTML += ("<li>" + contact.prenom + " " + contact.nom + " [ " + contact.numero + "]</li>")
     }, this);
     display.innerHTML += "</ul>"; // finalise la liste à puces
@@ -97,7 +99,7 @@ function remplirListeDeroulanteContacts(contacts) { // affichage des contacts da
     var listeDeroulante = document.querySelector("#listeContacts");
     listeDeroulante.options.length = 0; // Vider la liste déroulante avant de la remplir
 
-    contacts.forEach(function (contact) { // itérer sur la collection pour remplir la liste déroulante
+    contacts.forEach(function(contact) { // itérer sur la collection pour remplir la liste déroulante
         var option = document.createElement('option');
         option.value = contact.contactId;
         option.innerHTML = (contact.prenom + " " + contact.nom + " : " + contact.numero);
@@ -112,10 +114,10 @@ function delContacts() { //fonction appelée pour récupérer les contacts et le
     var url = ("http://localhost:8080/restex/rest/contacts/");
     var contactId = document.querySelector("#listeContacts").value;
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // readystate == 4 : toutes les étapes se sont bien réalisées
             // status == 200 : le serveur dit que tout s'est bien passé
-            setTimeout(function () {
+            setTimeout(function() {
                 getContacts(); //your code to be executed after 100 milliseconds
                 // permet de rafraichir l'affichage dès que la suppression d'un contat a été réalisée
             }, 100);
@@ -125,16 +127,3 @@ function delContacts() { //fonction appelée pour récupérer les contacts et le
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(contactId);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
