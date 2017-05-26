@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.maxoreau</groupId>
-	<artifactId>restex</artifactId>
+	<artifactId>zorglub</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>restex Maven Webapp</name>
+	<name>zorglub Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -53,7 +53,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>restex</finalName>
+		<finalName>zorglub</finalName>
 
 		<plugins>
 			<plugin>

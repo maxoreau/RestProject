@@ -1,4 +1,4 @@
-package com.maxoreau.restex.dao;
+package com.maxoreau.zorglub.dao;
 
 import java.util.List;
 

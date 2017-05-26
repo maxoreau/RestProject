@@ -1,4 +1,4 @@
-package com.maxoreau.restex.rest;
+package com.maxoreau.zorglub.rest;
 
 import java.util.List;
 
@@ -13,10 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
-import com.maxoreau.restex.dao.ContactDaoInDatabase;
-import com.maxoreau.restex.dao.daoGenerique;
-import com.maxoreau.restex.models.Contact;
+import com.maxoreau.zorglub.dao.ContactDaoInDatabase;
+import com.maxoreau.zorglub.dao.daoGenerique;
+import com.maxoreau.zorglub.models.Contact;
 
 
 @Path("/contacts")

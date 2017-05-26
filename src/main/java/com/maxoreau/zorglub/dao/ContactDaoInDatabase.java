@@ -1,4 +1,4 @@
-package com.maxoreau.restex.dao;
+package com.maxoreau.zorglub.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.maxoreau.restex.models.Contact;
+import com.maxoreau.zorglub.models.Contact;
 
 
 
@@ -54,7 +54,7 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 		PreparedStatement pstmt = null;
 		List<Contact> contacts = new ArrayList<Contact>();
 		try {
-			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE ((nom LIKE ?) or (prenom LIKE ?) or (numero LIKE ?));");
+			pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE ((nom LIKE ?) or (prenom LIKE ?) or (numero LIKE ?)) ORDER BY nom;");
 			pstmt.setString(1, ("%" + string + "%"));
 			pstmt.setString(2, ("%" + string + "%"));
 			pstmt.setString(3, ("%" + string + "%"));
@@ -156,7 +156,7 @@ public class ContactDaoInDatabase implements daoGenerique<Contact> {
 	@Override
 	public List<Contact> getAll() {
 		List<Contact> contacts = new ArrayList<Contact>();
-		String requete = "SELECT * FROM carnetscontacts.contacts";
+		String requete = "SELECT * FROM carnetscontacts.contacts ORDER BY nom";
 		Connection connection = ConnectionDatabase.getConnectionDatabase().getConnection();
 		Statement stmt = null;
 		try {
