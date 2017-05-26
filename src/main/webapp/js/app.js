@@ -16,7 +16,6 @@ function createContact() { // méthode appelée lors de la création d'un contac
     if ((prenom != "") && (nom != "") && (numero != "")) {
         var contact = new Contact(0, prenom, nom, numero);
         envoieContact(contact); // appel à la fonction qui va envoyer le contact au serveur
-        console.log(JSON.stringify(contact));
     }
     setTimeout(function() {
         getContacts(); //your code to be executed after 100 milliseconds
@@ -34,7 +33,6 @@ function envoieContact(contact) {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { // La constante DONE appartient à l'objet XMLHttpRequest,
             // elle n'est pas globale
-            console.log(xhr.getResponseHeader('Content-type'));
         }
     };
     xhr.open('POST', url, true); // POST très important : c'est lui qui défini quelle fonction du service REST est appelée
@@ -54,7 +52,6 @@ function getContacts() { //fonction appelée pour récupérer les contacts et le
             var contacts = JSON.parse(xhr.responseText);
             remplirListeDeroulanteContacts(contacts); // appel à la fonction qui va afficher les contacts dans une liste à déroulante
             remplirListeAPucesContacts(contacts, divId); // appel à la fonction qui va afficher les contacts dans une liste à puces
-            console.log(xhr.getResponseHeader('Content-type'));
         }
     };
     xhr.open('GET', url, true);
@@ -78,7 +75,6 @@ function searchByString(string) { //fonction appelée pour récupérer les conta
             var contacts = JSON.parse(xhr.responseText);
             remplirListeDeroulanteContacts(contacts); // appel à la fonction qui va afficher les contacts dans une liste à déroulante
             remplirListeAPucesContacts(contacts, divId); // appel à la fonction qui va afficher les contacts dans une liste à puces
-            console.log(xhr.getResponseHeader('Content-type'));
         }
     };
     xhr.open('GET', url, true);
@@ -93,7 +89,6 @@ function remplirListeAPucesContacts(contacts, divId) { // affichage des contacts
 
     contacts.forEach(function(contact) { // itérer sur la collection pour remplir la liste à puces
         display.innerHTML += ("<li>" + contact.prenom + " " + contact.nom + " [ " + contact.numero + "]</li>")
-        console.log(contact.contactId);
     }, this);
     display.innerHTML += "</ul>"; // finalise la liste à puces
 
@@ -125,7 +120,6 @@ function delContacts() { //fonction appelée pour récupérer les contacts et le
                 getContacts(); //your code to be executed after 100 milliseconds
                 // permet de rafraichir l'affichage dès que la suppression d'un contat a été réalisée
             }, 100);
-            console.log(xhr.getResponseHeader('Content-type'));
         }
     };
     xhr.open('DELETE', url, true);

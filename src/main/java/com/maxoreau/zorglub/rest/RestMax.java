@@ -1,4 +1,4 @@
-package com.maxoreau.restex.rest;
+package com.maxoreau.zorglub.rest;
 
 import java.util.List;
 
@@ -13,10 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
-import com.maxoreau.restex.dao.ContactDaoInDatabase;
-import com.maxoreau.restex.dao.daoGenerique;
-import com.maxoreau.restex.models.Contact;
+import com.maxoreau.zorglub.dao.ContactDaoInDatabase;
+import com.maxoreau.zorglub.dao.daoGenerique;
+import com.maxoreau.zorglub.models.Contact;
 
 
 @Path("/contacts")
@@ -36,8 +35,15 @@ public class RestMax {
 	@GET
 	@Path("{string}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Contact> SearchByString(@PathParam("string") String string) {
+	public List<Contact> searchByString(@PathParam("string") String string) {
 		return dao.readByName(string);
+	}
+	
+	@GET
+	@Path("id-{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Contact searchById(@PathParam("id") int id) {
+		return dao.readById(id);
 	}
 		
 	@GET
@@ -58,11 +64,6 @@ public class RestMax {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteContact(int contactId) {
 		dao.delete(contactId);
-	}
-	
-
-	
-	
-
+	}	
 	
 }

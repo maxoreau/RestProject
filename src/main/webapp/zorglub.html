@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zorglub</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <div class="page">
+
+        <div id="head" class="header">
+            <h2>Contacts administration</h2>
+            <p>theme :
+                <select id="styleGeneral">
+                <option value="darkgray">gray</option>
+                <option value="white">white</option>
+                <option value="lightblue">blue</option>     
+            </select>
+            </p>
+        </div>
+
+        <div id="wrap" class="wraper">
+
+            <div id="fonctionnalites" class="fonctions">
+
+                <div id="search" class="fonction01">
+
+                    <fieldset>
+                        <legend>Search</legend>
+                        <!-- Titre du fieldset -->
+                        <input type="search" class="formItem" id="searchBox" />
+                        <button type="button" id="searchButton" onclick="searchEngine()">Search</button>
+                    </fieldset>
+
+                </div>
+
+                <div id="contactCreation" class="fonction02">
+                    <fieldset>
+                        <legend>Create contact</legend>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="formItem" for="inputPrenom">first name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="formItem" id="inputPrenom" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="formItem" for="inputNom">last name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="formItem" id="inputNom" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="formItem" for="inputNumero">phone number</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="formItem" id="inputNumero" />
+                                </td>
+                            </tr>
+                        </table>
+                        <button type="button" class="formItem" id="sendContact" onclick="createContact()">Create</button>
+                    </fieldset>
+                </div>
+
+                <div id="alterContact" class="fonction03">
+
+                    <fieldset>
+                        <legend>Modify or Delete</legend>
+
+                        <select id="listeContacts"></select>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="formItem" for="modifyPrenom">first name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="formItem" id="modifyPrenom" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="formItem" for="modifyNom">last name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="formItem" id="modifyNom" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="formItem" for="modifyNumero">phone number</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="formItem" id="modifyNumero" />
+                                </td>
+                            </tr>
+                        </table>
+                        <button type="button" id="btnDelContact" onclick="delContact()">Delete</button>
+                        <button type="button" id="btnAlterContact" onclick="alterContact()">Update</button>
+                        <button type="button" id="btnClearAlterFields" onclick="clearAlterFields()">Clear</button>
+                    </fieldset>
+                </div>
+
+            </div>
+            <div id="affichageContacts" class="affichage"></div>
+        </div>
+
+
+        <div id="foot" class="footer">
+        </div>
+
+        <script src="./js/jquery-3.2.1.js"></script>
+        <script src="./js/appjquery.js"></script>
+    </div>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package com.maxoreau.restex.dao;
+package com.maxoreau.zorglub.dao;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ public interface daoGenerique<T> {
 	public void create(T t);
 	
 	public List<T> readByName(String name);
+	
+	public T readById(int i);
 	
 	public void update(T t);
 	
