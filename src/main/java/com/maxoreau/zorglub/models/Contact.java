@@ -1,4 +1,4 @@
-package com.maxoreau.restex.models;
+package com.maxoreau.zorglub.models;
 
 public class Contact {
 	private int contactId;

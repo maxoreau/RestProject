@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.maxoreau</groupId>
-	<artifactId>restex</artifactId>
+	<artifactId>zorglub</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>restex Maven Webapp</name>
+	<name>zorglub Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -20,10 +20,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-
-
-
-
 		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -34,6 +30,12 @@
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.sun.jersey.contribs/jersey-multipart -->
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-multipart</artifactId>
 			<version>1.9</version>
 		</dependency>
 
@@ -49,14 +51,9 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.38</version>
 		</dependency>
-
-
-
-
-
 	</dependencies>
 	<build>
-		<finalName>restex</finalName>
+		<finalName>zorglub</finalName>
 
 		<plugins>
 			<plugin>
