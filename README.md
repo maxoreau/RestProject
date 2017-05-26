@@ -2,12 +2,15 @@ RestProject
 
 ###########################################################
 
-Petit site internet réalisé sur l'architecture REST avec javascript côté cient:
-
-    afficher la liste de contacts (stockés dans la base de donnée)
-    saisir un nouveau contact (dans la base de donéne)
-    supprimer un contact (de la base de données)
-    rechercher dans la base de données
+Petit site internet réalisé sur l'architecture REST avec javascript côté cient.
+Le site permet d'interroger une base de donnée MySQL distante.
+adresse:
+ - http://<ip>:8080/restex/zorglub.html
+ 
+liste des fonctionnalités:
+    recherche de contacts
+    saisir un nouveau contact
+    supprimer/modifier un contact
 
 code SQL pour créer la base et la table :
 
