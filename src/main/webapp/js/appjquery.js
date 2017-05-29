@@ -143,4 +143,5 @@ function clearAlterFields() {
     $('#modifyNom').val('');
     $('#modifyNumero').val('');
     selectedContact = null;
+    remplirListeDeroulanteContacts(contactsListeDeroulante);
 }
