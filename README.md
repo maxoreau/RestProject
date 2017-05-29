@@ -5,7 +5,7 @@ RestProject
 Petit site internet réalisé sur l'architecture REST avec javascript côté cient.
 Le site permet d'interroger une base de donnée MySQL distante.
 adresse:
- - http://<ip>:8080/restex/zorglub.html
+ - http://localhost:8080/restex/zorglub.html
  
 liste des fonctionnalités:
     recherche de contacts
